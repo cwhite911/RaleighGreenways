@@ -94,7 +94,8 @@
      <script type="text/javascript">
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
-
+        map.addControl(L.mapbox.legendControl());
+        
         var trails = L.mapbox.markerLayer()
     .addTo(map);
 
