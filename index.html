@@ -94,12 +94,16 @@
      <script type="text/javascript">
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
-        map.addControl(L.mapbox.legendControl());
+        
 
         var trails = L.mapbox.markerLayer()
     .addTo(map);
 
 trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
+
+var legend = '<div><i style="color:#41db00; font-size:16px;"><strong>&mdash;</strong></i>' + '     ' + 'Greenways<br /></div>'
+
+map.addControl(L.mapbox.legendControl(legend));
      </script>
   </body>
 </html>
