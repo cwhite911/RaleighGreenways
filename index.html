@@ -154,6 +154,16 @@
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
 
+//Marker to Point
+function locationPoints (feature, latlng) {
+   return L.circleMarker(latlng, {
+    fillColor: '#FF7400',
+    radius: 4,
+    color: '#FFB273',
+    weight: 1,
+    fillOpacity: 1
+  });
+}
 
 //Style setup
        function greenwayStyle(feature) {
@@ -166,6 +176,10 @@
 //Popup set up
       function greenwayPopUp(feature, layer) {
   layer.bindPopup('<h2><strong>Info</strong></h2><strong>Trail Name: </strong>' + feature.properties.TRAIL_NAME + '<br />' + '<strong>Status: </strong>' + feature.properties.STATUS);
+}
+
+function parkingPopUp(feature, layer) {
+  layer.bindPopup('<h2><strong>Info</strong></h2><strong>Type: </strong>' + feature.properties.TYPE + '<br />' + '<strong>Status: </strong>' + feature.properties.STATUS + '<br />' + '<strong>Address: </strong>' + feature.properties.ADDRESS + '<br />' + '<strong>Directions: </strong>' + feature.properties.DIRECTIONS);
 }
 
 
@@ -191,7 +205,8 @@ $.ajax({
     success: function (response) {
 
         var parking = L.geoJson(response, {
-           
+           pointToLayer: locationPoints,
+           onEachFeature:parkingPopUp
         }).addTo(map);
     }
 });
