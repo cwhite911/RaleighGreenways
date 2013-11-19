@@ -128,6 +128,7 @@
   <div class='legend-title'>Greenways</div>
   <div><span style='color:#00CC00; font-size:16px;'><strong>&mdash;</strong> Existing</div></br>
   <div><span style='color:#FF0000; font-size:16px;'><strong>&mdash;</strong> Under Construction</div></br>
+  <div><span style="background: #FF7400; outline-color: #FFB273; border-radius:50px "> Parking<br />
   <div class='legend-scale'>
     <ul class='legend-labels'>
       <li><span style='background:#F1EEF6;'></span>0 - 20%</li>
@@ -153,6 +154,7 @@
      <script type="text/javascript">
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
+        L.control.scale().addTo(map);
 
 //Marker to Point
 function locationPoints (feature, latlng) {
