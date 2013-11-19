@@ -134,7 +134,7 @@
   </div>
   <div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>
   </div>
-
+<div id="chart"></div>
     </div> <!-- /container -->
 
 
@@ -144,6 +144,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
      <script src='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.js'></script>
+     <script src="http://d3js.org/d3.v2.min.js"></script>
 
      <script type="text/javascript">
 
@@ -162,6 +163,120 @@ parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/park
 
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
+
+
+
+
      </script>
+
+      <script>
+function renderChart() {
+
+var data = d3.csv.parse(d3.select('#csv').text());
+var valueLabelWidth = 40; // space reserved for value labels (right)
+var barHeight = 20; // height of one bar
+var barLabelWidth = 100; // space reserved for bar labels
+var barLabelPadding = 5; // padding between bar and bar labels (left)
+var gridLabelHeight = 18; // space reserved for gridline labels
+var gridChartOffset = 3; // space between start of grid and first bar
+var maxBarWidth = 420; // width of the bar with the max value
+ 
+// accessor functions 
+var barLabel = function(d) { return d['TRAIL_NAME']; };
+var barValue = function(d) { return parseFloat(d['SHAPE_LEN']); };
+ 
+// sorting
+var sortedData = data.sort(function(a, b) {
+  return d3.ascending(barValue(a), barValue(b)); 
+}); 
+
+// scales
+var yScale = d3.scale.ordinal().domain(d3.range(0, sortedData.length)).rangeBands([0, sortedData.length * barHeight]);
+var y = function(d, i) { return yScale(i); };
+var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
+var x = d3.scale.linear().domain([0, d3.max(sortedData, barValue)]).range([0, maxBarWidth]);
+// svg container element
+var chart = d3.select('#chart').append("svg")
+  .attr('width', maxBarWidth + barLabelWidth + valueLabelWidth)
+  .attr('height', gridLabelHeight + gridChartOffset + sortedData.length * barHeight);
+// grid line labels
+var gridContainer = chart.append('g')
+  .attr('transform', 'translate(' + barLabelWidth + ',' + gridLabelHeight + ')'); 
+gridContainer.selectAll("text").data(x.ticks(10)).enter().append("text")
+  .attr("x", x)
+  .attr("dy", -3)
+  .attr("text-anchor", "middle")
+  .text(String);
+// vertical grid lines
+gridContainer.selectAll("line").data(x.ticks(10)).enter().append("line")
+  .attr("x1", x)
+  .attr("x2", x)
+  .attr("y1", 0)
+  .attr("y2", yScale.rangeExtent()[1] + gridChartOffset)
+  .style("stroke", "#ccc");
+// bar labels
+var labelsContainer = chart.append('g')
+  .attr('transform', 'translate(' + (barLabelWidth - barLabelPadding) + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+labelsContainer.selectAll('text').data(sortedData).enter().append('text')
+  .attr('y', yText)
+  .attr('stroke', 'none')
+  .attr('fill', 'black')
+  .attr("dy", ".35em") // vertical-align: middle
+  .attr('text-anchor', 'end')
+  .text(barLabel);
+// bars
+var barsContainer = chart.append('g')
+  .attr('transform', 'translate(' + barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+barsContainer.selectAll("rect").data(sortedData).enter().append("rect")
+  .attr('y', y)
+  .attr('height', yScale.rangeBand())
+  .attr('width', function(d) { return x(barValue(d)); })
+  .attr('stroke', 'white')
+  .attr('fill', 'steelblue');
+// bar value labels
+barsContainer.selectAll("text").data(sortedData).enter().append("text")
+  .attr("x", function(d) { return x(barValue(d)); })
+  .attr("y", yText)
+  .attr("dx", 3) // padding-left
+  .attr("dy", ".35em") // vertical-align: middle
+  .attr("text-anchor", "start") // text-align: right
+  .attr("fill", "black")
+  .attr("stroke", "none")
+  .text(function(d) { return d3.round(barValue(d), 2); });
+// start line
+barsContainer.append("line")
+  .attr("y1", -gridChartOffset)
+  .attr("y2", yScale.rangeExtent()[1] + gridChartOffset)
+  .style("stroke", "#000");
+
+}
+    </script>
+    <script id="csv" type="text/csv">OBJECTID,FREQUENCY,TRAIL_NAME,SHAPE_LEN
+1,12,Abbotts Creek Trail,3.028605592940901
+2,3,Baileywick Trail,0.594440370261524
+3,13,Beaver Dam Trail,1.150425335962668
+4,2,Birch Ridge Connector,0.320280816263824
+5,11,Centennial Bikeway Connector,2.469068782478244
+6,115,Crabtree Creek Trail,13.813296320942865
+7,19,East Fork Mine Creek Trail,2.409426349278079
+8,23,Edwards Mill Connector,1.334411606131223
+9,14,Gardner Street Trail,0.734607800955651
+10,18,Hare Snipe Creek Trail,3.261536475993400
+11,21,Honeycutt Creek Trail,3.396178113361419
+12,20,House Creek Trail,3.015779649310452
+13,30,Little Rock Trail,1.724946655929675
+14,8,Marsh Creek Trail,0.331994071099722
+15,9,Martin St Connector,0.442715616298148
+16,55,Mine Creek Trail,6.219989082496467
+17,137,Neuse River Trail,28.308211718859006
+18,13,Reedy Creek Trail,5.220481704204871
+19,9,Richland Creek Trail,2.910911910105102
+20,29,Rocky Branch Trail,3.727700973800349
+21,5,Simms Branch Trail,1.730525967444121
+22,6,Snelling Branch Trail,0.852693586166423
+23,2,Spring Forest Trail,0.447076094129497
+24,5,Wakefield Trail,1.441049053959240
+25,109,Walnut Creek Trail,16.371203608641895</script>
+    <script>renderChart();</script>
   </body>
 </html>
