@@ -17,7 +17,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 <link href='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.css' rel='stylesheet' />
-
+<link rel="stylesheet" href="../RaleighGreenways/dist/L.GeoSearch-master/src/css/l.geosearch.css" />
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -149,13 +149,23 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-     <script src='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.js'></script>
-     <script src="http://d3js.org/d3.v2.min.js"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.js'></script>
+    <script src="http://d3js.org/d3.v2.min.js"></script>
+    <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.control.geosearch.js"></script>
+    <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.geosearch.provider.openstreetmap.js"></script>
 
      <script type="text/javascript">
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
         L.control.scale().addTo(map);
+
+//Geocoder
+
+        new L.Control.GeoSearch({
+    provider: new L.GeoSearch.Provider.OpenStreetMap(),
+    position: 'topcenter',
+    showMarker: true
+}).addTo(map);
 
 //Marker to Point
 function locationPoints (feature, latlng) {
