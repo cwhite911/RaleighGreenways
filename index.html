@@ -155,6 +155,11 @@
 
 trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
 
+ var parking = L.mapbox.markerLayer()
+    .addTo(map);
+
+parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
+
 var legend = '<div><i style="color:#41db00; font-size:16px;"><strong>&mdash;</strong></i>' + '     ' + 'Greenways<br /></div>'
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
