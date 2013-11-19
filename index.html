@@ -119,7 +119,7 @@
 
     
     <br />
-    <div id='map1'></div>
+    <div id='map'></div>
     <br />
     <div id='dist'><h1>Distance Graph (Miles)</h1><div><br />
 <div id="chart"></div>
@@ -154,7 +154,7 @@
 
 
  <script type="text/javascript">
-var map1 = L.map('map1', {
+var map = L.map('map', {
   center: [35.583427, -82.554519],
   zoom: 12,
   zoomControl: false,
@@ -165,7 +165,7 @@ var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{
   key: 'BC9A493B41014CAABB98F0471D759707',
   styleId: 22677,
   zIndex: 2
-}).addTo(map1);
+}).addTo(map);
 
      </script>
 
