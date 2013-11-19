@@ -18,7 +18,9 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 <link href='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.css' rel='stylesheet' />
 <link rel="stylesheet" href="../RaleighGreenways/dist/L.GeoSearch-master/src/css/l.geosearch.css" />
+<link rel="stylesheet" href="../RaleighGreenways/dist/DataTables-1.9.4/media/css/jquery.dataTables.css" />
 
+../RaleighGreenways/dist/DataTables-1.9.4/media/js/jquery.dataTables.js
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -167,8 +169,9 @@
     <br />
     <div id='dist'><h1>Distance Graph (Miles)</h1><a href="#" class="btn btn-default btn-xs active" role="button">Return to Top</a><div><br />
 <div id="chart"></div><br/>
- <div id="table"><h1>Discover Your Greenway</h1>
-
+ <div id="table">
+  <h1>Discover Your Greenway</h1>
+    <table id="datatable" class="table table-striped"></table>
  </div> 
 
 <div id='legend-content' style='display: none;'>
@@ -193,6 +196,8 @@
     <script src="http://d3js.org/d3.v2.min.js"></script>
     <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.control.geosearch.js"></script>
     <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.geosearch.provider.openstreetmap.js"></script>
+    <script src="../RaleighGreenways/dist/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+    
 
      <script type="text/javascript">
 
@@ -274,6 +279,39 @@ $.ajax({
 
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
+
+
+
+var data = [];
+    for(each in parkingdata._layers.features){
+      var address = parkingdata._layers[each].feature.properties.ADDRESS;
+      var bwtst = parkingdata._layers[each].feature.properties.BETWEEN_ST;
+      var directions = parkingdata._layers[each].feature.properties.DIRECTIONS;
+      var status = parkingdata._layers[each].feature.properties.STATUS;
+      
+      data.push([address, bwtst, directions, status]);
+
+      $(document).ready(function() {
+          $('#datatable').dataTable( {
+              "aaData": data,
+        "bProcessing":true,
+        "bDeferRender": true,
+        "bRetrieve": true,
+        "iDisplayLength": 10,
+              "aoColumns": [
+            { "sTitle": "Image"},
+            { "sTitle": "Last Name" },
+            { "sTitle": "First Name" },
+      { "sTitle": "Middle Name" },
+            { "sTitle": "Section", "sClass": "center" },
+            { "sTitle": "Lot", "sClass": "center" },
+            { "sTitle": "Grave #", "sClass": "center"},
+            { "sTitle": "Interment #", "sClass": "center"},
+            { "sTitle": "Age", "sClass": "center"},
+      { "sTitle": "Type" }
+        ]
+          } );
+      } );
 
 
 
