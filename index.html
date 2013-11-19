@@ -17,6 +17,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 <link href='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.css' rel='stylesheet' />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -118,7 +119,9 @@
 
     <div id='map' class='dark'></div>
     <br />
-    <div id='dist'><h1>Distance Graph</h1><div><br />
+    <div id='map1'></div>
+    <br />
+    <div id='dist'><h1>Distance Graph (Miles)</h1><div><br />
 <div id="chart"></div>
   
 
@@ -147,6 +150,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
      <script src='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.js'></script>
      <script src="http://d3js.org/d3.v2.min.js"></script>
+     <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
 
      <script type="text/javascript">
 
@@ -168,6 +172,22 @@ map.legendControl.addLegend(document.getElementById('legend-content').innerHTML)
 
 
 
+
+     </script>
+
+     <script type="text/javascript">
+var map1 = L.map('map1', {
+  center: [35.583427, -82.554519],
+  zoom: 12,
+  zoomControl: false,
+  attributionControl: false
+});
+
+var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+  key: 'BC9A493B41014CAABB98F0471D759707',
+  styleId: 22677,
+  zIndex: 2
+}).addTo(map);
 
      </script>
 
