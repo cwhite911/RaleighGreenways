@@ -173,14 +173,14 @@ $.ajax({
     dataType: 'json',
     success: function (response) {
 
-        greenway = L.geoJson(response, {
+        var greenway = L.geoJson(response, {
             style: greenwayStyle
         }).addTo(map);
     }
 });
 
         //setup greenway geojson
-        var greenway = L.geoJson(greenwaydata, {}).addTo(map);
+       
 
 //         var trails = L.mapbox.markerLayer()
 //     .addTo(map);
