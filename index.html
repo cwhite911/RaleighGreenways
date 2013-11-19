@@ -152,17 +152,28 @@
      <script type="text/javascript">
 
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
-        
 
-        var trails = L.mapbox.markerLayer()
-    .addTo(map);
 
-trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
+        var greenwaydata = 'http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson';
+       // function greenwayStyle(feature) {
+ // switch (feature.properties.segmenttype) {
+   // case 'GREENWAY': return {color: "#41db00","weight": 2,"opacity": 0.65};
+   // case 'PROPOSED GREENWAY': return {color: "#92ed6b","weight": 2,"opacity": 0.65,dashArray: '3'};
+   // }
+//}
 
- var parking = L.mapbox.markerLayer()
-    .addTo(map);
+        //setup greenway geojson
+        var greenway = L.geoJson(greenwaydata, {}).addTo(map);
 
-parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
+//         var trails = L.mapbox.markerLayer()
+//     .addTo(map);
+
+// trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
+
+//  var parking = L.mapbox.markerLayer()
+//     .addTo(map);
+
+// parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
 
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
