@@ -150,18 +150,17 @@
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
         
 
-        var trails = L.mapbox.markerLayer()
-    .addTo(map);
+      
 
-trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
+var trails_url = 'http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson';
 
  var parking = L.mapbox.markerLayer()
     .addTo(map);
 
 parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
 
-var Ttrail_style = {fillColor: '#D79D21', color: "#D79D21", weight: 1, fillOpacity: 1};
-L.geoJson(trails, {style:Ttrail_style});
+var trail_style = {fillColor: '#D79D21', color: "#D79D21", weight: 1, fillOpacity: 1};
+var greenway = L.geoJson(trails_url, {style:trail_style}).addTo(map);
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
      </script>
