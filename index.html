@@ -162,6 +162,10 @@
           }
       }
 
+      function greenwayPopUp(feature, layer) {
+  layer.bindPopup('<h4>Info</h4><strong>Trail Name: </strong>' + feature.properties.TRAIL_NAME + '<br />' + '<strong>Status: </strong>' + feature.properties.STATUS);
+}
+
 
 $.ajax({
     type: "GET",
@@ -170,7 +174,8 @@ $.ajax({
     success: function (response) {
 
         var greenway = L.geoJson(response, {
-            style: greenwayStyle
+            style: greenwayStyle,
+            onEachFeature: greenwayPopUp
         }).addTo(map);
     }
 });
