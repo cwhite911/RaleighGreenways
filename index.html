@@ -160,15 +160,8 @@ trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trail
 
 parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
 
-map.markerLayer.setGeoJSON(parking);
-map.markerLayer.on('mouseover', function(e) {
-    e.layer.openPopup();
-});
-map.markerLayer.on('mouseout', function(e) {
-    e.layer.closePopup();
-});
-
-
+var Ttrail_style = {fillColor: '#D79D21', color: "#D79D21", weight: 1, fillOpacity: 1};
+L.geoJson(trails, {style:Ttrail_style});
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
      </script>
