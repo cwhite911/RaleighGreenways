@@ -126,7 +126,7 @@
 <div id='legend-content' style='display: none;'>
   <div class='my-legend'>
   <div class='legend-title'>Greenways</div>
-  <div><span style='color:#00CC00; font-size:16px;'><strong>&mdash;</strong>Existing</div></br>
+  <div><span style='color:#00CC00; font-size:16px;'><strong>&mdash;</strong> Existing</div></br>
   <div><span style='color:#FF0000; font-size:16px;'><strong>&mdash;</strong> Under Construction</div></br>
   <div class='legend-scale'>
     <ul class='legend-labels'>
@@ -155,7 +155,7 @@
         var map = L.mapbox.map('map', 'ctwhite.gak10i1l');
 
 
-        
+//Style setup
        function greenwayStyle(feature) {
           switch (feature.properties.STATUS) {
             case 'Existing': return {color: "#00CC00","weight": 2,"opacity": 0.65};
@@ -163,6 +163,7 @@
           }
       }
 
+//Popup set up
       function greenwayPopUp(feature, layer) {
   layer.bindPopup('<h2><strong>Info</strong></h2><strong>Trail Name: </strong>' + feature.properties.TRAIL_NAME + '<br />' + '<strong>Status: </strong>' + feature.properties.STATUS);
 }
@@ -181,18 +182,28 @@ $.ajax({
     }
 });
 
-        //setup greenway geojson
+        //setup parking geojson
        
+$.ajax({
+    type: "GET",
+    url: 'http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson',
+    dataType: 'json',
+    success: function (response) {
 
+        var parking = L.geoJson(response, {
+           
+        }).addTo(map);
+    }
+});
 //         var trails = L.mapbox.markerLayer()
 //     .addTo(map);
 
 // trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
 
-  var parking = L.mapbox.markerLayer()
-    .addTo(map);
+ //  var parking = L.mapbox.markerLayer()
+ //    .addTo(map);
 
- parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
+ // parking.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
 
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
