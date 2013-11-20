@@ -169,6 +169,7 @@
 <div id="chart"></div><br/>
  <div id="table">
   <h1>Discover Your Greenway</h1>
+  <a href="#" class="btn btn-default btn-xs active" role="button">Return to Top</a><div><br />
     <table id="datatable" class="table table-striped"></table>
  </div> 
 
@@ -272,9 +273,6 @@ $.ajax({
 
 // trails.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/trails.geojson');
 
-  var parkingdata = L.mapbox.markerLayer();
-
- parkingdata.loadURL('http://cwhite911.github.io/RaleighGreenways/dist/dist/data/parking.geojson');
 
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
