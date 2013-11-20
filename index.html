@@ -277,7 +277,7 @@ $.ajax({
 
 map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
 
-alert(parkingdata.features[0].properties.ADDRESS);
+
 
 var data = [];
     for(each in parkingdata.features){
@@ -285,8 +285,10 @@ var data = [];
       var bwtst = parkingdata.features[each].properties.BETWEEN_ST;
       var directions = parkingdata.features[each].properties.DIRECTIONS;
       var status = parkingdata.features[each].properties.STATUS;
-      
-      data.push([address, bwtst, directions, status]);
+      var type = parkingdata.features[each].properties.TYPE;
+      var trailn = parkingdata.features[each].properties.TRAIL_NAME;
+
+      data.push([address, bwtst, directions, status, type, trailn]);
 
       $(document).ready(function() {
           $('#datatable').dataTable( {
@@ -299,7 +301,9 @@ var data = [];
             { "sTitle": "Address"},
             { "sTitle": "Between Street" },
             { "sTitle": "Directions" },
-            { "sTitle": "Status" }
+            { "sTitle": "Status" },
+            { "sTitle": "Type"},
+            { "sTitle": "Closest Trail"}
         ]
           } );
       } );
