@@ -284,7 +284,7 @@ map.legendControl.addLegend(document.getElementById('legend-content').innerHTML)
 
 
 var data = [];
-    for(each in parkingdata._layers.features){
+    for(each in parkingdata._layers){
       var address = parkingdata._layers[each].feature.properties.ADDRESS;
       var bwtst = parkingdata._layers[each].feature.properties.BETWEEN_ST;
       var directions = parkingdata._layers[each].feature.properties.DIRECTIONS;
