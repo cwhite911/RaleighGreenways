@@ -280,7 +280,7 @@ map.legendControl.addLegend(document.getElementById('legend-content').innerHTML)
 alert(parkingdata.features[0].properties.ADDRESS);
 
 var data = [];
-    for(each in parkingdata._layers){
+    for(each in parkingdata.features){
       var address = parkingdata.features[each].properties.ADDRESS
       var bwtst = parkingdata.features[each].properties.BETWEEN_ST;
       var directions = parkingdata.features[each].properties.DIRECTIONS;
