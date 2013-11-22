@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Raliegh Greenways</title>
+
+    <!-- Bootstrap core CSS -->
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+<link href='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.css' rel='stylesheet' />
+<link rel="stylesheet" href="../RaleighGreenways/dist/L.GeoSearch-master/src/css/l.geosearch.css" />
+<link rel="stylesheet" href="../RaleighGreenways/dist/DataTables-1.9.4/media/css/jquery.dataTables.css" />
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>#map { width:1200px; height:500px; }</style>
+    <style type='text/css'>
+    .my-legend .legend-title {
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 90%;
+      }
+    .my-legend .legend-scale ul {
+      margin: 0;
+      padding: 0;
+      float: left;
+      list-style: none;
+      }
+    .my-legend .legend-scale ul li {
+      display: block;
+      float: left;
+      width: 50px;
+      margin-bottom: 6px;
+      text-align: center;
+      font-size: 80%;
+      list-style: none;
+      }
+    .my-legend ul.legend-labels li span {
+      display: block;
+      float: left;
+      height: 15px;
+      width: 50px;
+      }
+    .my-legend .legend-source {
+      font-size: 70%;
+      color: #999;
+      clear: both;
+      }
+    .my-legend a {
+      color: #777;
+      }
+  </style>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Explore Raleigh</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#about">About</a></li>
+            <li><a href="#con">Greenways</a></li>
+            <li><a href="#table">Parking</a></li>
+            <li><a href="#dist">Distance Chart</a></li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elevation Profiles<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.arcgis.com/apps/ElevationsProfile/index.html?appid=3e5a67dd3ebd4b4b9c260cb05e105d46" target="_blank">Elevation Profiles - ESRI</a></li>
+                <li><a href="Ele" target="_blank">Static Maps</a></li>
+              </ul>
+            </li>
+          </ul>
+             
+            <li><a href="#rs">Rules and Safety</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.raleighnc.gov/arts/content/PRecDesignDevelop/Articles/CapitalAreaGreenwayTrailSystem.html" target="_blank">City of Raleigh Parks and Rec</a></li>
+                <li><a href="https://github.com/cwhite911/RaleighGreenways" target="_blank">GitHub</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="http://ncsu.edu/" target="_blank">NCSU</a></li>
+            <li><a href="http://www.courses.ncsu.edu/gis515/lec/001/" target="_blank">GIS 515</a></li>
+            <li><a href="http://www.courses.ncsu.edu/gis515/lec/001/Project3.htm" target="_blank">Project 3</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+
+     
+     
+<!-- Panel -->
+<div id='rs'><h1>Greenway Elevation Profiles</h1><p class="text-muted">- City of Raleigh</p><a href="#" class="btn btn-default btn-xs active" role="button">Return to Top</a><div><br />
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Beaver Dam Trail
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <ul>
+          <li><img src="../RaleighGreenways/dist/img/beaverdam.jpg.jpg" width="1200" height="800" alt="On Raleigh's greenway near Dorthea Dix Hospital"> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div><vr><br>
+
+<small class='text-muted' class="text-center">Aurthor: <a href="https://github.com/cwhite911/RaleighGreenways">Corey White</a>; Data Source: <a href="http://www.raleighnc.gov/business/content/ITechAdmin/Articles/GeographicInformationServices.html">City of Raleigh;</a> Date: <small class="text-primary"> 11/19/2013</small></div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.4.2/mapbox.js'></script>
+    <script src="http://d3js.org/d3.v2.min.js"></script>
+    <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.control.geosearch.js"></script>
+    <script src="../RaleighGreenways/dist/L.GeoSearch-master/src/js/l.geosearch.provider.openstreetmap.js"></script>
+    <script src="../RaleighGreenways/dist/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+    <script src="../RaleighGreenways/dist/dist/data/parkingdata.geojson"></script>
+    
+
+    
+  </body>
+</html>
